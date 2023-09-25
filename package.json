@@ -1,0 +1,19 @@
+{
+  "name": "hidden-arcade",
+  "version": "1.0.0",
+  "description": "A collection of web games and utility apps",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LouisSavoie/hidden-arcade.git"
+  },
+  "author": "Louis Savoie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LouisSavoie/hidden-arcade/issues"
+  },
+  "homepage": "https://github.com/LouisSavoie/hidden-arcade#readme"
+}
