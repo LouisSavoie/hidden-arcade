@@ -4,8 +4,9 @@ const app = express()
 const port = 3000
 
 // ROUTES
-const indexRoutes = require('./routes/index')
-app.use(indexRoutes)
+require('fs').readdirSync('./routes/').forEach((file) => {
+  app.use(require('./routes/' + file))
+})
 
 // PORT LISTENING
 app.listen(port, () => {
