@@ -1,11 +1,13 @@
+// REQUIRES
 const express = require('express')
 const app = express()
 const port = 3000
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+// ROUTES
+const indexRoutes = require('./routes/index')
+app.use(indexRoutes)
 
+// PORT LISTENING
 app.listen(port, () => {
   console.log(`App listening on port ${port}`)
 })
