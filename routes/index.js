@@ -4,7 +4,7 @@ const router = express.Router();
 // INDEX ROUTES
 
 router.get('/', (req, res) => {
-  res.send('Welcome to Hidden Arcade')
+  res.render('index')
 })
 
 module.exports = router
