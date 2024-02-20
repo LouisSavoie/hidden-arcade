@@ -11,12 +11,13 @@ const port = 3000
 mongoose.connect(process.env.DATABASEURL, {})
 .then(console.log('Mongoose connected to MongoDB'))
 .catch(error => console.log(error.message))
-
+// MONGOOSE MODELS
+const User = require('./models/user')
 
 // APP SETUP
 app.set('view engine', 'ejs');
 
-// ROUTES
+// REQUIRE AND USE ROUTES
 require('fs').readdirSync('./routes/').forEach((file) => {
   app.use(require('./routes/' + file))
 })
