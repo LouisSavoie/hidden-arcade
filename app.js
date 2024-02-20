@@ -8,10 +8,7 @@ require('dotenv').config()
 const port = 3000
 
 // CONNECT MONGOOSE TO MONGODB
-mongoose.connect(process.env.DATABASEURL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
+mongoose.connect(process.env.DATABASEURL, {})
 .then(console.log('Mongoose connected to MongoDB'))
 .catch(error => console.log(error.message))
 
