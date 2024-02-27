@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const passport = require("passport")
 const LocalStrategy = require("passport-local")
+const session = require('express-session')
 require('dotenv').config()
 
 //GLOBAL VARS
@@ -27,7 +28,7 @@ require('fs').readdirSync('./routes/').forEach((file) => {
 })
 
 // PASSPORT CONFIG
-app.use(require("express-session")({
+app.use(session({
   secret: process.env.EXPSESSSCT,
   resave: false,
   saveUninitialized: false
