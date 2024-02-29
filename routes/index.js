@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const passport = require('passport')
+const { deserializeUser } = require("passport")
 const User = require('../models/user')
 
 // INDEX ROUTES
@@ -42,8 +43,9 @@ router.post('/login', passport.authenticate('local', {failureRedirect: '/login'}
 })
 
 // GET log out
-router.get('/logout', (req, res) => {
-  res.send('You are logged out')
+router.get('/logout', passport.authenticate('local', {failureRedirect: '/login'}), (req, res) => {
+  req.logout()
+  res.redirect('/login')
 })
 
 module.exports = router
