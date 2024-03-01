@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const passport = require('passport')
-const { deserializeUser } = require("passport")
 const User = require('../models/user')
 
 // INDEX ROUTES
@@ -19,16 +18,16 @@ router.get('/register', (req, res) => {
 // POST register
 router.post('/register', (req, res) => {
   // get data from form
-  let newUser = new User({username: req.body.username})
+  const newUser = new User({ username: req.body.username })
   // add data to User model and add to DB
-  User.register(newUser, req.body.password, function(err, user) {
-      if(err){
-          return res.render('/register')
-      }
-      // authenticate user login through passport and redirect to index view
-      passport.authenticate('local')(req, res, function() {
-          res.redirect('/')
-      })
+  User.register(newUser, req.body.password, function (err, user) {
+    if (err) {
+      return res.render('/register')
+    }
+    // authenticate user login through passport and redirect to index view
+    passport.authenticate('local')(req, res, function () {
+      res.redirect('/')
+    })
   })
 })
 
@@ -38,12 +37,12 @@ router.get('/login', (req, res) => {
 })
 
 // POST log in
-router.post('/login', passport.authenticate('local', {failureRedirect: '/login'}), (req, res) => {
-    res.redirect('/')
+router.post('/login', passport.authenticate('local', { failureRedirect: '/login' }), (req, res) => {
+  res.redirect('/')
 })
 
 // GET log out
-router.get('/logout', passport.authenticate('local', {failureRedirect: '/login'}), (req, res) => {
+router.get('/logout', passport.authenticate('local', { failureRedirect: '/login' }), (req, res) => {
   req.logout()
   res.redirect('/login')
 })
