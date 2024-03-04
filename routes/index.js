@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const passport = require('passport')
 const User = require('../models/user')
 
 // INDEX ROUTES
@@ -24,10 +23,7 @@ router.post('/register', (req, res) => {
     if (err) {
       return res.render('/register')
     }
-    // authenticate user login through passport and redirect to index view
-    passport.authenticate('local')(req, res, function () {
-      res.redirect('/')
-    })
+    res.redirect('/')
   })
 })
 
@@ -37,14 +33,13 @@ router.get('/login', (req, res) => {
 })
 
 // POST log in
-router.post('/login', passport.authenticate('local', { failureRedirect: '/login' }), (req, res) => {
+router.post('/login', (req, res) => {
   res.redirect('/')
 })
 
 // GET log out
-router.get('/logout', passport.authenticate('local', { failureRedirect: '/login' }), (req, res) => {
-  req.logout()
-  res.redirect('/login')
+router.get('/logout', (req, res) => {
+  res.redirect('/')
 })
 
 module.exports = router
